@@ -143,3 +143,22 @@ html[data-bs-theme='dark'] {
 .class-table th:nth-child(3), .class-table td:nth-child(3) {
     text-align: left; /* Alinha a coluna de Características à esquerda */
 }
+
+/* ... (estilos anteriores) ... */
+
+/* === ESTILOS ATUALIZADOS PARA A PÁGINA DE CLASSES === */
+.class-table th, .class-table td {
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap; /* Impede que o texto quebre para a linha seguinte nas células */
+}
+
+.class-table th:nth-child(3), .class-table td:nth-child(3) {
+    text-align: left; /* Alinha a coluna de Características à esquerda */
+    white-space: normal; /* Permite que o texto das características quebre a linha */
+}
+
+/* Garante que o container da tabela seja rolável em ecrãs pequenos */
+.table-responsive {
+    overflow-x: auto;
+}
