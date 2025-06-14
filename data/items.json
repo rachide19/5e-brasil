@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Poção de Cura",
+    "source": "PHB",
+    "type": "Poção",
+    "rarity": "Comum",
+    "description": "Você recupera 2d4 + 2 pontos de vida quando bebe esta poção. O líquido vermelho da poção brilha fracamente e tem um gosto adocicado."
+  },
+  {
+    "name": "Espada Longa +1",
+    "source": "DMG",
+    "type": "Arma (espada longa)",
+    "rarity": "Incomum",
+    "description": "Você ganha um bónus de +1 nas jogadas de ataque e dano feitas com esta arma mágica."
+  }
+]

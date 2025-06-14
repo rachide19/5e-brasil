@@ -162,3 +162,83 @@ html[data-bs-theme='dark'] {
 .table-responsive {
     overflow-x: auto;
 }
+/* ... (estilos anteriores) ... */
+
+/* === NOVOS ESTILOS PARA A PÁGINA DE ESPÉCIES === */
+
+.list-panel, .content-panel {
+    background-color: #2c3034;
+    border: 1px solid #495057;
+    border-radius: 0.375rem;
+    height: 85vh; /* Define uma altura relativa à altura do ecrã */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical se o conteúdo for maior que a altura */
+}
+
+/* Estilo para indentar as sub-raças na lista */
+.subrace-item {
+    padding-left: 2rem !important;
+}
+/* ... (estilos anteriores) ... */
+
+/* === NOVOS ESTILOS PARA FERRAMENTAS (GERADOR DE STATUS) === */
+.stat-box {
+    border: 2px solid #0d6efd;
+    border-radius: 0.5rem;
+    padding: 1rem 1.5rem;
+    font-size: 2rem;
+    font-weight: bold;
+    margin: 0.5rem;
+    min-width: 80px;
+    text-align: center;
+}
+/* ... (estilos anteriores) ... */
+
+/* === NOVOS ESTILOS PARA BESTIÁRIO E SECÇÕES === */
+.stat-block {
+    background-color: #fdf1dc; /* Cor de pergaminho */
+    color: #1a1a1a; /* Cor de texto escura para legibilidade */
+    border: 2px solid #822000;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.stat-block .creature-heading {
+    padding: 0.5rem 1rem;
+    color: #822000;
+}
+
+.stat-block .creature-heading h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+    margin: 0;
+    color: #822000;
+}
+
+.stat-block h3 {
+    border-bottom: 1px solid #822000;
+    font-family: 'Libre Baskerville', serif;
+    color: #822000;
+    padding: 0.25rem 1rem;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.stat-block .red-bar {
+    background-image: linear-gradient(to right, #631200, #a02102, #631200);
+    height: 3px;
+    border-top: 1px solid #4d0e00;
+    border-bottom: 1px solid #4d0e00;
+}
+
+.stat-block p {
+    margin-bottom: 0.5rem;
+}
+
+/* Cores das bordas para os novos botões */
+.btn-rule {
+    border-top: 4px solid #198754; /* Verde */
+}
+
+.btn-dm {
+    border-top: 4px solid #6f42c1; /* Roxo */
+}

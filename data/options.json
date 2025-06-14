@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Agonizing Blast",
+    "source": "PHB",
+    "type": "Eldritch Invocation",
+    "prerequisite": "Truque Eldritch Blast",
+    "description": "Quando você lança o truque Eldritch Blast, adicione o seu modificador de Carisma ao dano de cada raio que atinge o alvo."
+  },
+  {
+    "name": "Armor of Shadows",
+    "source": "PHB",
+    "type": "Eldritch Invocation",
+    "prerequisite": "Nenhum",
+    "description": "Você pode lançar a magia Mage Armor em si mesmo à vontade, sem gastar um espaço de magia ou componentes materiais."
+  }
+]

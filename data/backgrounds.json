@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Acólito",
+    "source": "PHB",
+    "skillProficiencies": ["Intuição", "Religião"],
+    "languages": "Duas à sua escolha",
+    "equipment": "Um símbolo sagrado (um presente que recebeu quando entrou para o sacerdócio), um livro de orações ou uma roda de oração, 5 varetas de incenso, vestes, um conjunto de roupas comuns e uma bolsa contendo 15 po.",
+    "feature": {
+      "name": "Aabrigo dos Fiéis",
+      "description": "Como acólito, você comanda o respeito daqueles que partilham a sua fé e pode realizar as cerimónias religiosas da sua divindade. Você e os seus companheiros de aventura podem esperar receber cura e cuidados gratuitos num templo, santuário ou outra presença estabelecida da sua fé, embora devam fornecer quaisquer componentes materiais necessários para as magias. Aqueles que partilham a sua religião irão apoiá-lo (mas apenas a si) a um nível modesto de vida. Você também pode ter laços com um templo específico e ter lá uma residência. Isto pode ser o templo onde foi iniciado, ou um templo onde serviu mais recentemente. Enquanto estiver perto do seu templo, pode pedir assistência, desde que a ajuda que pede não seja perigosa e você permaneça em boas graças com o seu templo."
+    },
+    "suggestedCharacteristics": "Acólitos são moldados pela sua experiência em templos ou outras comunidades religiosas. O seu estudo da história e dos dogmas da sua fé, e a sua relação com templos, santuários ou hierarquias afetam as suas maneiras e ideais. As suas falhas podem ser hipocrisia ou um pensamento dogmático arraigado."
+  }
+]

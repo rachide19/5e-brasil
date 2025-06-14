@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Anão",
+    "source": "PHB",
+    "abilityScoreIncrease": "O seu valor de Constituição aumenta em 2.",
+    "age": "Os anões maturam ao mesmo ritmo que os humanos, mas são considerados jovens até atingirem os 50 anos. Em média, vivem cerca de 350 anos.",
+    "alignment": "A maioria dos anões é leal, acreditando firmemente nos benefícios de uma sociedade bem ordenada. Eles tendem para o bem, com um forte sentido de justiça e uma crença de que todos merecem partilhar os benefícios de uma ordem justa.",
+    "size": "Os anões medem entre 1,20 e 1,50 metros e pesam cerca de 75 kg. O seu tamanho é Médio.",
+    "speed": "A sua velocidade base de caminhada é de 7,5 metros. A sua velocidade não é reduzida por usar armadura pesada.",
+    "vision": "Visão no Escuro. Acostumado à vida subterrânea, você tem uma visão superior na escuridão e na penumbra. Você pode ver na penumbra a até 18 metros como se fosse luz clara, e na escuridão como se fosse penumbra. Não consegue discernir cores na escuridão, apenas tons de cinza.",
+    "traits": [
+      {
+        "name": "Resiliência Anã",
+        "description": "Você tem vantagem em testes de resistência contra veneno e tem resistência contra dano de veneno."
+      },
+      {
+        "name": "Treino de Combate Anão",
+        "description": "Você tem proficiência com machados de batalha, machadinhas, martelos leves e martelos de guerra."
+      },
+      {
+        "name": "Proficiência com Ferramentas",
+        "description": "Você ganha proficiência com um tipo de ferramentas de artesão à sua escolha: ferramentas de ferreiro, de cervejeiro ou de pedreiro."
+      },
+      {
+        "name": "Conhecimento de Rochas",
+        "description": "Sempre que fizer um teste de Inteligência (História) relacionado com a origem de trabalhos em pedra, é considerado proficiente na perícia História e adiciona o dobro do seu bónus de proficiência ao teste, em vez do seu bónus normal."
+      }
+    ],
+    "languages": "Você pode falar, ler e escrever Comum e Anão. A língua anã é cheia de consoantes duras e sons guturais, e essa característica transparece em qualquer outra língua que um anão fale.",
+    "subraces": [
+      {
+        "name": "Anão da Colina",
+        "abilityScoreIncrease": "O seu valor de Sabedoria aumenta em 1.",
+        "traits": [
+          {
+            "name": "Robustez Anã",
+            "description": "O seu máximo de pontos de vida aumenta em 1, e aumenta em 1 sempre que ganha um nível."
+          }
+        ]
+      }
+    ]
+  }
+]

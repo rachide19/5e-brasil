@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Goblin",
+    "source": "MM",
+    "size": "Pequeno",
+    "type": "humanoide (goblinoid)",
+    "alignment": "neutro e mau",
+    "ac": 15,
+    "ac_desc": "(armadura de couro, escudo)",
+    "hp": 7,
+    "hp_formula": "(2d6)",
+    "speed": "9 m",
+    "stats": { "str": 8, "dex": 14, "con": 10, "int": 10, "wis": 8, "cha": 8 },
+    "skills": { "Furtividade": 6 },
+    "senses": "visão no escuro 18 m, Percepção passiva 9",
+    "languages": "Comum, Goblin",
+    "cr": "1/4",
+    "xp": 50,
+    "traits": [
+      {
+        "name": "Fuga Ligeira",
+        "description": "O goblin pode realizar a ação de Desengajar ou Esconder-se como uma ação bónus em cada um dos seus turnos."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Cimitarra",
+        "type": "Ataque com Arma Corpo a Corpo",
+        "details": "+4 para acertar, alcance 1,5 m, um alvo. Dano: 5 (1d6 + 2) de dano cortante."
+      },
+      {
+        "name": "Arco Curto",
+        "type": "Ataque com Arma à Distância",
+        "details": "+4 para acertar, alcance 24/96 m, um alvo. Dano: 5 (1d6 + 2) de dano perfurante."
+      }
+    ]
+  }
+]

@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Mage Armor",
+    "level": 1,
+    "school": "Abjuration",
+    "casting_time": "1 ação",
+    "range": "Toque",
+    "components": ["V", "S", "M (um pedaço de couro curado)"],
+    "duration": "8 horas",
+    "description": "Você toca numa criatura voluntária que não esteja a usar armadura, e uma força mágica protetora envolve-a até a magia terminar. A CA base do alvo torna-se 13 + o seu modificador de Destreza. A magia termina se o alvo vestir armadura ou se você a dispensar como uma ação.",
+    "classes": ["Feiticeiro", "Mago"]
+  },
+  {
+    "name": "Fireball",
+    "level": 3,
+    "school": "Evocation",
+    "casting_time": "1 ação",
+    "range": "45 metros",
+    "components": ["V", "S", "M (uma pequena bola de guano de morcego e enxofre)"],
+    "duration": "Instantânea",
+    "description": "Um raio de luz amarela brilhante sai da sua mão e explode num ponto à sua escolha dentro do alcance, numa esfera de fogo com 6 metros de raio. Cada criatura nessa área deve fazer um teste de resistência de Destreza. Um alvo sofre 8d6 de dano de fogo se falhar no teste, ou metade do dano se for bem-sucedido.",
+    "classes": ["Feiticeiro", "Mago"]
+  }
+]
