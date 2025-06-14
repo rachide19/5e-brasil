@@ -5,30 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerador de Status - 5e Brasil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <main class="container mt-4">
-        <header class="mb-4 border-bottom pb-3">
-             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/index.html">Início</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Gerador de Status</li>
-                </ol>
-            </nav>
-            <h1>Gerador de Status</h1>
-        </header>
+    
+    <header id="navbar-placeholder"></header>
 
-        <section id="method-roll">
+    <main class="container mt-4">
+        <h1 class="mb-4">Gerador de Status</h1>
+
+        <section id="method-roll" class="mb-5">
             <h4>Método: 4d6, descarta o menor</h4>
             <p>Role quatro dados de 6 faces e some os três resultados mais altos. Repita seis vezes.</p>
             <button id="roll-button" class="btn btn-primary mb-3">Rolar Atributos</button>
-            <div id="roll-results" class="d-flex justify-content-around flex-wrap">
-                <!-- Resultados aparecerão aqui -->
-            </div>
+            <div id="roll-results" class="d-flex justify-content-around flex-wrap"></div>
         </section>
-
-        <hr class="my-5">
 
         <section id="method-array">
             <h4>Método: Conjunto Padrão (Standard Array)</h4>
@@ -42,8 +34,10 @@
                  <div class="stat-box">8</div>
             </div>
         </section>
-
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/nav.js" defer></script>
     <script src="/js/statgen.js" defer></script>
 </body>
 </html>

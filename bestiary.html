@@ -5,33 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bestiário - 5e Brasil</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Fonte especial para o bloco de estatísticas -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+    <header id="navbar-placeholder"></header>
+
     <main class="container-fluid mt-4 px-4">
-        <header class="mb-4 border-bottom pb-3">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="/index.html">Início</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Bestiário</li>
-                </ol>
-            </nav>
-            <h1>Bestiário</h1>
-        </header>
+        <h1 class="mb-4">Bestiário</h1>
         <div class="row">
             <aside class="col-md-4">
                 <div class="list-panel" id="bestiary-list"></div>
             </aside>
             <section class="col-md-8">
-                <!-- O painel de conteúdo aqui não precisa de scroll, o bloco de stats controlará o seu próprio tamanho -->
                 <div id="bestiary-details"></div>
             </section>
         </div>
     </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="/js/nav.js" defer></script>
     <script src="/js/bestiary.js" defer></script>
 </body>
 </html>
