@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
     const formBusca = document.getElementById('form-busca');
     const inputBusca = document.getElementById('input-busca');
-    const dropdownTalentos = document.getElementById('dropdown-talentos');
+    // ATUALIZADO: Agora o nosso alvo é o container com a barra de rolagem
+    const dropdownContainer = document.getElementById('dropdown-talentos-container');
 
-    // Função da busca da barra de navegação
     function inicializarBusca() {
         if (formBusca) {
             formBusca.addEventListener('submit', (evento) => {
@@ -20,10 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // NOVA FUNÇÃO: Carrega os talentos e os insere no dropdown
     async function carregarTalentosDropdown() {
-        // Verifica se o elemento do dropdown existe na página
-        if (!dropdownTalentos) return;
+        if (!dropdownContainer) return;
 
         try {
             const resposta = await fetch('/data/feats.json');
@@ -31,29 +29,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const talentos = await resposta.json();
 
-            // Limpa o conteúdo inicial do dropdown ("Carregando...")
-            dropdownTalentos.innerHTML = `<li><a class="dropdown-item" href="/feats.html">Ver Todos os Talentos</a></li><li><hr class="dropdown-divider"></li>`;
+            // Limpa o conteúdo inicial ("Carregando...")
+            dropdownContainer.innerHTML = '';
 
-            // Para cada talento, cria um item de link e o adiciona ao menu
+            // Para cada talento, cria um link e o adiciona diretamente ao container
             talentos.forEach(talento => {
-                const li = document.createElement('li');
                 const a = document.createElement('a');
                 a.className = 'dropdown-item';
-                // O link agora inclui um "#" com o nome do talento. Isso é crucial para o próximo passo.
                 a.href = `/feats.html#${encodeURIComponent(talento.name)}`;
                 a.textContent = talento.name;
-                li.appendChild(a);
-                dropdownTalentos.appendChild(li);
+                dropdownContainer.appendChild(a);
             });
 
         } catch (erro) {
             console.error("Erro ao carregar talentos no dropdown:", erro);
-            // Se falhar, exibe uma mensagem de erro no dropdown
-            dropdownTalentos.innerHTML += '<li><span class="dropdown-item-text text-danger">Erro ao carregar</span></li>';
+            dropdownContainer.innerHTML = '<span class="dropdown-item-text text-danger">Erro ao carregar</span>';
         }
     }
 
-    // Inicializa ambas as funcionalidades
     inicializarBusca();
     carregarTalentosDropdown();
 });

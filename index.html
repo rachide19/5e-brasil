@@ -18,17 +18,23 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
-                    <!-- NOVO: Menu Dropdown para "Jogador" -->
+                    <!-- Menu Dropdown para "Jogador" -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownJogador" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Jogador
                         </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownJogador" id="dropdown-talentos">
-                            <!-- O JavaScript irá inserir a lista de talentos aqui -->
-                            <li><a class="dropdown-item" href="/feats.html">Ver Todos os Talentos</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><span class="dropdown-item-text">Carregando talentos...</span></li>
-                        </ul>
+                        <!-- ESTRUTURA DO DROPDOWN ATUALIZADA -->
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownJogador">
+                            <div class="dropdown-header-links">
+                                <a class="dropdown-item" href="/feats.html">Ver Todos os Talentos</a>
+                            </div>
+                            <hr class="dropdown-divider my-1">
+                            <!-- Container com scroll para a lista de talentos -->
+                            <div class="dropdown-scrollable-container" id="dropdown-talentos-container">
+                                <!-- O JavaScript irá inserir a lista de talentos aqui -->
+                                <span class="dropdown-item-text px-3">Carregando talentos...</span>
+                            </div>
+                        </div>
                     </li>
                 </ul>
 
