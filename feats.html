@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body>
+<body data-bs-theme="dark"> <!-- Adicionando tema escuro aqui também para consistência -->
     <main class="container-fluid mt-4 px-4">
         <header class="mb-4 border-bottom pb-3">
             <nav aria-label="breadcrumb">
@@ -17,7 +17,6 @@
                     <li class="breadcrumb-item active" aria-current="page">Talentos</li>
                 </ol>
             </nav>
-
             <div class="d-flex justify-content-between align-items-center">
                 <h1>Talentos</h1>
                 <a href="/index.html" class="btn btn-outline-secondary">
@@ -28,12 +27,17 @@
 
         <div class="row">
             <aside class="col-md-4">
-                <div class="list-container">
-                    <input type="search" id="caixa-busca" class="form-control mb-3" placeholder="Buscar talentos...">
-                    <ul class="list-group" id="lista-talentos">
-                        <li class="list-group-item">Carregando...</li>
-                    </ul>
+                <!-- NOVO: Container para a busca e o dropdown de resultados -->
+                <div class="search-wrapper mb-3">
+                    <input type="search" id="caixa-busca" class="form-control" placeholder="Buscar talentos..." autocomplete="off">
+                    <!-- O dropdown de resultados da busca será inserido aqui -->
+                    <div id="search-results-container" class="search-results hidden"></div>
                 </div>
+                
+                <!-- A lista principal da esquerda -->
+                <ul class="list-group" id="lista-talentos">
+                    <li class="list-group-item">Carregando...</li>
+                </ul>
             </aside>
 
             <section class="col-md-8">

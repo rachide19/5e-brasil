@@ -1,69 +1,40 @@
-/* === Estilos da Página de Talentos (já existentes) === */
+/* ... (estilos anteriores) ... */
 
-body {
-    background-color: #f8f9fa;
+/* NOVO: Estilos para o componente de busca na página de talentos */
+.search-wrapper {
+    position: relative; /* Define o ponto de âncora para o container de resultados */
 }
 
-.list-container .list-group {
-    max-height: 75vh;
-    overflow-y: auto;
+.search-results {
+    position: absolute; /* Posiciona o container em relação ao .search-wrapper */
+    top: 100%; /* Começa logo abaixo da caixa de busca */
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Garante que o dropdown fique sobre outros conteúdos */
+    
+    background-color: #343a40; /* Cor de fundo escura */
+    border: 1px solid #495057;
+    border-top: none; /* Remove a borda de cima para se conectar à caixa de busca */
+    border-radius: 0 0 0.375rem 0.375rem; /* Bordas arredondadas apenas na parte inferior */
+
+    max-height: 250px; /* Altura máxima antes de a rolagem aparecer */
+    overflow-y: auto;  /* Barra de rolagem vertical */
 }
 
-.list-group-item-action:hover {
-    cursor: pointer;
-    background-color: #e9ecef;
+.search-results a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #dee2e6;
+    text-decoration: none;
+    transition: background-color 0.15s ease-in-out;
 }
 
-/* === Novos Estilos para a Página Inicial === */
-
-/* Força o tema escuro em todo o site */
-html[data-bs-theme='dark'] {
-    background-color: #212529; /* Cor de fundo principal */
-}
-
-.bg-dark-nav {
-    background-color: #2c3034 !important;
-}
-
-.section-title {
-    color: #0d6efd; /* Azul do Bootstrap */
-    font-weight: bold;
-    border-bottom: 2px solid #495057;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
-}
-
-/* Estilo base para os botões de categoria */
-.btn-category {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease-in-out;
-    background-color: #343a40; /* Cor de fundo do botão */
-    border: 1px solid #495057; /* Borda sutil */
-    color: #adb5bd; /* Cor do texto e ícone */
-}
-
-.btn-category:hover {
-    transform: translateY(-5px); /* Efeito de flutuar */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+.search-results a:hover {
+    background-color: #495057; /* Cor de fundo ao passar o mouse */
     color: #fff;
 }
 
-/* Cor da borda para botões de "Jogadores" */
-.btn-player {
-    border-top: 4px solid #0d6efd;
-}
-
-.btn-category .icon-wrapper {
-    margin-bottom: 1rem;
-}
-
-.btn-category .btn-label {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
+/* Classe utilitária para esconder/mostrar elementos */
+.hidden {
+    display: none;
 }

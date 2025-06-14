@@ -1,76 +1,105 @@
-// Espera que o HTML da página seja completamente carregado antes de executar o script.
-// Esta é a melhor prática para evitar erros de "elemento não encontrado".
 document.addEventListener('DOMContentLoaded', () => {
 
-    // 1. Obter referências aos elementos do HTML com que vamos interagir.
     const listaTalentosEl = document.getElementById('lista-talentos');
     const conteudoTalentoEl = document.getElementById('conteudo-talento');
     const caixaBuscaEl = document.getElementById('caixa-busca');
+    // NOVO: Referência para o container de resultados da busca
+    const searchResultsContainer = document.getElementById('search-results-container');
 
-    // Verifica se todos os elementos necessários existem. Se não, exibe um erro e para.
-    if (!listaTalentosEl || !conteudoTalentoEl || !caixaBuscaEl) {
-        console.error("Erro Crítico: Não foi possível encontrar um ou mais elementos essenciais no HTML. Verifique os IDs: 'lista-talentos', 'conteudo-talento', 'caixa-busca'.");
+    if (!listaTalentosEl || !conteudoTalentoEl || !caixaBuscaEl || !searchResultsContainer) {
+        console.error("Erro Crítico: Um ou mais elementos do HTML não foram encontrados.");
         return;
     }
 
-    // 2. Criar uma variável para armazenar todos os talentos depois de serem carregados.
     let todosOsTalentos = [];
 
-    // 3. Função para carregar os dados do ficheiro JSON.
-    // Usamos 'async/await' para um código mais limpo e fácil de ler.
     async function carregarDados() {
         try {
-            // O caminho absoluto '/data/feats.json' garante que ele procura o ficheiro a partir da raiz do site.
             const resposta = await fetch('/data/feats.json');
-
-            // Se a resposta do servidor não for bem-sucedida (ex: erro 404), lança um erro.
-            if (!resposta.ok) {
-                throw new Error(`Erro ao buscar dados. Status: ${resposta.status}`);
-            }
-
-            // Converte a resposta em formato JSON para um objeto JavaScript.
-            const dados = await resposta.json();
-            todosOsTalentos = dados; // Armazena os dados na nossa variável.
+            if (!resposta.ok) throw new Error(`Erro de rede: ${resposta.status}`);
             
-            // Uma vez que os dados estão carregados, exibe a lista completa.
+            const dados = await resposta.json();
+            todosOsTalentos = dados;
+            
             renderizarLista(todosOsTalentos);
+            // NOVO: Popula o nosso novo dropdown de busca
+            popularDropdownDeBusca(todosOsTalentos);
 
         } catch (erro) {
             console.error('Falha ao carregar os talentos:', erro);
-            listaTalentosEl.innerHTML = `<li class="list-group-item text-danger">Erro ao carregar os talentos. Verifique o console (F12).</li>`;
+            listaTalentosEl.innerHTML = `<li class="list-group-item text-danger">Erro ao carregar talentos.</li>`;
         }
     }
 
-    // 4. Função que "desenha" a lista de talentos na coluna da esquerda.
-    function renderizarLista(listaParaRenderizar) {
-        // Limpa a lista de qualquer item anterior (como o "Carregando...").
-        listaTalentosEl.innerHTML = '';
+    // NOVO: Função para preencher o dropdown de resultados da busca
+    function popularDropdownDeBusca(talentos) {
+        searchResultsContainer.innerHTML = ''; // Limpa antes de adicionar
+        talentos.forEach(talento => {
+            const linkEl = document.createElement('a');
+            linkEl.href = '#';
+            linkEl.textContent = talento.name;
+            
+            // Adiciona um evento de clique a cada item do dropdown
+            linkEl.addEventListener('click', (e) => {
+                e.preventDefault(); // Previne o link de recarregar a página
+                caixaBuscaEl.value = talento.name; // Preenche a caixa de busca
+                renderizarDetalhes(talento); // Mostra os detalhes
+                renderizarLista([talento]); // Filtra a lista principal para mostrar apenas o selecionado
+                searchResultsContainer.classList.add('hidden'); // Esconde o dropdown
+            });
+            searchResultsContainer.appendChild(linkEl);
+        });
+    }
 
-        // Se a lista (depois de filtrar) estiver vazia, mostra uma mensagem.
-        if (listaParaRenderizar.length === 0) {
+    // --- LÓGICA DE EVENTOS (MOSTRAR/ESCONDER DROPDOWN) ---
+
+    // NOVO: Mostra o dropdown quando a caixa de busca é focada (clicada)
+    caixaBuscaEl.addEventListener('focus', () => {
+        searchResultsContainer.classList.remove('hidden');
+    });
+
+    // NOVO: Esconde o dropdown se o usuário clicar em qualquer lugar fora da área de busca
+    document.addEventListener('click', (e) => {
+        // Verifica se o clique foi fora do .search-wrapper
+        if (!e.target.closest('.search-wrapper')) {
+            searchResultsContainer.classList.add('hidden');
+        }
+    });
+
+    // --- LÓGICA DE FILTRAGEM (JÁ EXISTENTE, MAS AINDA IMPORTANTE) ---
+    
+    caixaBuscaEl.addEventListener('input', () => {
+        const termoBusca = caixaBuscaEl.value.toLowerCase();
+        const talentosFiltrados = todosOsTalentos.filter(t => t.name.toLowerCase().includes(termoBusca));
+        
+        // Filtra tanto a lista principal da esquerda quanto o dropdown de busca
+        renderizarLista(talentosFiltrados);
+        popularDropdownDeBusca(talentosFiltrados);
+    });
+
+    // --- FUNÇÕES DE RENDERIZAÇÃO (SEM GRANDES MUDANÇAS) ---
+
+    function renderizarLista(lista) {
+        listaTalentosEl.innerHTML = '';
+        if (lista.length === 0) {
             listaTalentosEl.innerHTML = `<li class="list-group-item">Nenhum talento encontrado.</li>`;
             return;
         }
-
-        // Para cada talento na lista, cria um elemento <li> e o adiciona à lista no HTML.
-        listaParaRenderizar.forEach(talento => {
+        lista.forEach(talento => {
             const itemEl = document.createElement('a');
             itemEl.className = 'list-group-item list-group-item-action';
             itemEl.textContent = talento.name;
             itemEl.href = '#';
-
-            // Adiciona um evento de clique para exibir os detalhes do talento.
-            itemEl.addEventListener('click', (evento) => {
-                evento.preventDefault();
+            itemEl.addEventListener('click', (e) => {
+                e.preventDefault();
                 renderizarDetalhes(talento);
             });
-
             listaTalentosEl.appendChild(itemEl);
         });
     }
 
-    // 5. Função que "desenha" os detalhes de um talento específico na coluna da direita.
     function renderizarDetalhes(talento) {
+        // ... (código para renderizar detalhes permanece o mesmo)
         const descricoesHtml = talento.entries.map(entry => {
             if (typeof entry === 'string') {
                 return `<p>${entry}</p>`;
@@ -80,7 +109,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             return '';
         }).join('');
-
         conteudoTalentoEl.innerHTML = `
             <div class="card">
                 <div class="card-body">
@@ -93,21 +121,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         `;
     }
-    
-    // 6. Adiciona o evento para a caixa de busca.
-    // O evento 'input' é acionado a cada vez que o utilizador digita ou apaga algo.
-    caixaBuscaEl.addEventListener('input', () => {
-        const termoBusca = caixaBuscaEl.value.toLowerCase();
 
-        // Filtra o array 'todosOsTalentos' original.
-        const talentosFiltrados = todosOsTalentos.filter(talento =>
-            talento.name.toLowerCase().includes(termoBusca)
-        );
-
-        // Renderiza a lista novamente, mas desta vez apenas com os itens filtrados.
-        renderizarLista(talentosFiltrados);
-    });
-
-    // 7. Ponto de partida: chama a função para carregar os dados.
+    // Ponto de partida
     carregarDados();
 });
