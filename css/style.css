@@ -1,0 +1,17 @@
+/* Define uma cor de fundo para a página inteira */
+body {
+    background-color: #f8f9fa; /* Um cinza bem claro */
+}
+
+/* Estiliza o container da lista para ter uma altura máxima e barra de rolagem */
+.list-container .list-group {
+    max-height: 75vh; /* A altura máxima será 75% da altura da tela */
+    overflow-y: auto; /* Adiciona uma barra de rolagem vertical se a lista for muito grande */
+}
+
+/* Muda o cursor para uma "mãozinha" ao passar o mouse sobre os itens da lista,
+   indicando que eles são clicáveis. */
+.list-group-item:hover {
+    cursor: pointer;
+    background-color: #e9ecef; /* Um cinza um pouco mais escuro para o efeito hover */
+}
