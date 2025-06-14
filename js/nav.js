@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         <header class="page-header">
             <div class="container d-flex flex-wrap align-items-center mb-3">
                 <h1 class="page-title my-0">5e Ferramentas 🇧🇷</h1>
-                <p class="page-subtitle my-0 ms-3">Um conjunto de ferramentas para Jogadores e Narradores de Dungeons & Dragons 5ª Edição.</p>
+                <p class="page-subtitle my-0 ms-3">Um conjunto de ferramentas para jogadores e Mestres de Dungeons & Dragons 5ª Edição.</p>
             </div>
         </header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark-nav border-bottom border-secondary sticky-top">
@@ -20,22 +20,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 </button>
                 <div class="collapse navbar-collapse" id="main-navbar">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/index.html">Home</a>
-                        </li>
+                        <li class="nav-item"><a class="nav-link" href="/index.html">Home</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Regras
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Regras</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/adventures.html">Aventuras</a></li>
-                                <!-- Outros links de regras podem ser adicionados aqui -->
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Jogador
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Jogador</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/classes.html">Classes</a></li>
                                 <li><a class="dropdown-item" href="/species.html">Espécies</a></li>
@@ -49,15 +42,22 @@ document.addEventListener('DOMContentLoaded', function() {
                             </ul>
                         </li>
                          <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Mestre
-                            </a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mestre</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/bestiary.html">Bestiário</a></li>
-                                <!-- Outros links de mestre podem ser adicionados aqui -->
                             </ul>
                         </li>
                     </ul>
+
+                    <!-- NOVO: Interruptor de Tema -->
+                    <div class="theme-switcher-container ms-lg-auto me-lg-3 d-flex align-items-center">
+                        <i class="fas fa-sun theme-icon" id="sun-icon"></i>
+                        <div class="form-check form-switch mx-2">
+                            <input class="form-check-input" type="checkbox" role="switch" id="theme-toggle-switch" title="Alterar tema">
+                        </div>
+                        <i class="fas fa-moon theme-icon" id="moon-icon"></i>
+                    </div>
+
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Buscar no site..." aria-label="Search">
                         <button class="btn btn-outline-info" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>

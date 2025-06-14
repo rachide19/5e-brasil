@@ -242,3 +242,39 @@ html[data-bs-theme='dark'] {
 .btn-dm {
     border-top: 4px solid #6f42c1; /* Roxo */
 }
+/* ... (estilos anteriores) ... */
+
+/* === NOVOS ESTILOS PARA O INTERRUPTOR DE TEMA === */
+
+.theme-switcher-container .theme-icon {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.theme-switcher-container .theme-icon.active {
+    color: #f39c12; /* Cor amarela para o ícone ativo */
+}
+
+.form-switch .form-check-input {
+    width: 3.5em;
+    height: 1.75em;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280,0,0,0.25%29'/%3e%3c/svg%3e");
+    transition: background-position .15s ease-in-out;
+}
+
+.form-switch .form-check-input:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+    background-position: right center;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+/* Garante que o menu principal e a busca tenham espaço em telas maiores */
+@media (min-width: 992px) {
+    #main-navbar .navbar-nav {
+        flex-grow: 1;
+    }
+}
