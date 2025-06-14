@@ -1,17 +1,69 @@
-/* Define uma cor de fundo para a página inteira */
+/* === Estilos da Página de Talentos (já existentes) === */
+
 body {
-    background-color: #f8f9fa; /* Um cinza bem claro */
+    background-color: #f8f9fa;
 }
 
-/* Estiliza o container da lista para ter uma altura máxima e barra de rolagem */
 .list-container .list-group {
-    max-height: 75vh; /* A altura máxima será 75% da altura da tela */
-    overflow-y: auto; /* Adiciona uma barra de rolagem vertical se a lista for muito grande */
+    max-height: 75vh;
+    overflow-y: auto;
 }
 
-/* Muda o cursor para uma "mãozinha" ao passar o mouse sobre os itens da lista,
-   indicando que eles são clicáveis. */
-.list-group-item:hover {
+.list-group-item-action:hover {
     cursor: pointer;
-    background-color: #e9ecef; /* Um cinza um pouco mais escuro para o efeito hover */
+    background-color: #e9ecef;
+}
+
+/* === Novos Estilos para a Página Inicial === */
+
+/* Força o tema escuro em todo o site */
+html[data-bs-theme='dark'] {
+    background-color: #212529; /* Cor de fundo principal */
+}
+
+.bg-dark-nav {
+    background-color: #2c3034 !important;
+}
+
+.section-title {
+    color: #0d6efd; /* Azul do Bootstrap */
+    font-weight: bold;
+    border-bottom: 2px solid #495057;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Estilo base para os botões de categoria */
+.btn-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #343a40; /* Cor de fundo do botão */
+    border: 1px solid #495057; /* Borda sutil */
+    color: #adb5bd; /* Cor do texto e ícone */
+}
+
+.btn-category:hover {
+    transform: translateY(-5px); /* Efeito de flutuar */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+/* Cor da borda para botões de "Jogadores" */
+.btn-player {
+    border-top: 4px solid #0d6efd;
+}
+
+.btn-category .icon-wrapper {
+    margin-bottom: 1rem;
+}
+
+.btn-category .btn-label {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
 }
