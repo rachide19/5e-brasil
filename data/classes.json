@@ -1,0 +1,71 @@
+[
+  {
+    "name": "Paladino",
+    "source": "PHB",
+    "hitDie": 10,
+    "proficiency": ["wisdom", "charisma"],
+    "spellcastingAbility": "charisma",
+    "startingProficiencies": {
+      "armor": ["armadura leve", "armadura média", "armadura pesada", "escudos"],
+      "weapons": ["armas simples", "armas marciais"],
+      "tools": [],
+      "skills": [
+        {
+          "choose": ["Atletismo", "Intuição", "Intimidação", "Medicina", "Persuasão", "Religião"],
+          "count": 2
+        }
+      ]
+    },
+    "startingEquipment": "Você começa com o seguinte equipamento, além do equipamento concedido pelo seu antecedente: (a) uma arma marcial e um escudo ou (b) duas armas marciais; (a) cinco azagaias ou (b) qualquer arma corpo a corpo simples; (a) um pacote de sacerdote ou (b) um pacote de explorador; Cota de malha e um símbolo sagrado.",
+    "multiclassing": {
+      "requires": {
+        "strength": 13,
+        "charisma": 13
+      },
+      "proficienciesGained": {
+        "armor": ["armadura leve", "armadura média", "escudos"]
+      }
+    },
+    "classTable": [
+      { "level": 1, "profBonus": 2, "features": "Sentido Divino, Cura pelas Mãos", "spellSlots": { "1": 0, "2": 0, "3": 0, "4": 0, "5": 0 } },
+      { "level": 2, "profBonus": 2, "features": "Estilo de Luta, Conjuração, Destruição Divina", "spellSlots": { "1": 2, "2": 0, "3": 0, "4": 0, "5": 0 } },
+      { "level": 3, "profBonus": 2, "features": "Saúde Divina, Juramento Sagrado", "spellSlots": { "1": 3, "2": 0, "3": 0, "4": 0, "5": 0 } },
+      { "level": 4, "profBonus": 2, "features": "Aumento de Atributo", "spellSlots": { "1": 3, "2": 0, "3": 0, "4": 0, "5": 0 } },
+      { "level": 5, "profBonus": 3, "features": "Ataque Extra", "spellSlots": { "1": 4, "2": 2, "3": 0, "4": 0, "5": 0 } },
+      { "level": 6, "profBonus": 3, "features": "Aura de Proteção", "spellSlots": { "1": 4, "2": 2, "3": 0, "4": 0, "5": 0 } },
+      { "level": 7, "profBonus": 3, "features": "Característica de Juramento Sagrado", "spellSlots": { "1": 4, "2": 3, "3": 0, "4": 0, "5": 0 } },
+      { "level": 8, "profBonus": 3, "features": "Aumento de Atributo", "spellSlots": { "1": 4, "2": 3, "3": 0, "4": 0, "5": 0 } },
+      { "level": 9, "profBonus": 4, "features": "—", "spellSlots": { "1": 4, "2": 3, "3": 2, "4": 0, "5": 0 } },
+      { "level": 10, "profBonus": 4, "features": "Aura de Coragem", "spellSlots": { "1": 4, "2": 3, "3": 2, "4": 0, "5": 0 } },
+      { "level": 11, "profBonus": 4, "features": "Destruição Divina Aprimorada", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 0, "5": 0 } },
+      { "level": 12, "profBonus": 4, "features": "Aumento de Atributo", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 0, "5": 0 } },
+      { "level": 13, "profBonus": 5, "features": "—", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1, "5": 0 } },
+      { "level": 14, "profBonus": 5, "features": "Toque Purificador", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 1, "5": 0 } },
+      { "level": 15, "profBonus": 5, "features": "Característica de Juramento Sagrado", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2, "5": 0 } },
+      { "level": 16, "profBonus": 5, "features": "Aumento de Atributo", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 2, "5": 0 } },
+      { "level": 17, "profBonus": 6, "features": "—", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 } },
+      { "level": 18, "profBonus": 6, "features": "Aura Aprimorada", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 1 } },
+      { "level": 19, "profBonus": 6, "features": "Aumento de Atributo", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 } },
+      { "level": 20, "profBonus": 6, "features": "Campeão Sagrado", "spellSlots": { "1": 4, "2": 3, "3": 3, "4": 3, "5": 2 } }
+    ],
+    "classFeatures": [
+      {
+        "name": "Sentido Divino",
+        "level": 1,
+        "description": "A presença de um mal forte regista-se nos seus sentidos como um odor nocivo, e um bem poderoso soa aos seus ouvidos como música celestial. Com uma ação, você pode abrir a sua consciência para detetar tais forças. Até o final do seu próximo turno, você sabe a localização de qualquer celestial, corruptor ou morto-vivo dentro de 18 metros de si que não esteja atrás de cobertura total. Você sabe o tipo (celestial, corruptor ou morto-vivo) de qualquer ser cuja presença sinta, mas não a sua identidade. Dentro do mesmo raio, você também deteta a presença de qualquer lugar ou objeto que tenha sido consagrado ou profanado, como com o feitiço 'Santificar'. Você pode usar esta característica um número de vezes igual a 1 + o seu modificador de Carisma. Quando terminar um descanso longo, você recupera todos os usos gastos."
+      },
+      {
+        "name": "Cura pelas Mãos",
+        "level": 1,
+        "description": "O seu toque abençoado pode curar feridas. Você tem uma reserva de poder de cura que se reabastece quando tira um descanso longo. Com essa reserva, você pode restaurar um número total de pontos de vida igual ao seu nível de paladino × 5. Com uma ação, você pode tocar numa criatura e extrair poder da reserva para restaurar um número de pontos de vida a essa criatura, até o máximo restante na sua reserva. Alternativamente, você pode gastar 5 pontos de vida da sua reserva de cura para curar o alvo de uma doença ou neutralizar um veneno que o afete. Você pode curar múltiplas doenças e neutralizar múltiplos venenos com um único uso de Cura pelas Mãos, gastando pontos de vida para cada um. Esta característica não tem efeito em mortos-vivos e construtos."
+      }
+    ],
+    "subclasses": [
+      {
+        "name": "Juramento da Devoção",
+        "source": "PHB",
+        "description": "O Juramento da Devoção liga um paladino aos mais nobres ideais de justiça, virtude e ordem. Estes paladinos, por vezes chamados de cavaleiros brancos ou guerreiros santos, cumprem o juramento de proteger os fracos, de punir os iníquos e de promover o bem em todo o lado."
+      }
+    ]
+  }
+]

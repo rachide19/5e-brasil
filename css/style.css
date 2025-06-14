@@ -1,6 +1,78 @@
-/* ... (estilos anteriores) ... */
+/* === Estilos da Página de Talentos (já existentes) === */
 
-/* NOVO: Estilos para o componente de busca na página de talentos */
+body {
+    background-color: #f8f9fa;
+}
+
+/* Força a cor do texto do body para branco no tema escuro para evitar problemas de legibilidade */
+html[data-bs-theme='dark'] body {
+    color: #dee2e6;
+}
+
+.list-container .list-group {
+    max-height: 75vh;
+    overflow-y: auto;
+}
+
+.list-group-item-action:hover {
+    cursor: pointer;
+    background-color: #e9ecef;
+}
+
+/* === Estilos para a Página Inicial === */
+
+html[data-bs-theme='dark'] {
+    background-color: #212529; /* Cor de fundo principal */
+}
+
+.bg-dark-nav {
+    background-color: #2c3034 !important;
+}
+
+.section-title {
+    color: #0d6efd; /* Azul do Bootstrap */
+    font-weight: bold;
+    border-bottom: 2px solid #495057;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-category {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    background-color: #343a40;
+    border: 1px solid #495057;
+    color: #adb5bd;
+    text-decoration: none;
+}
+
+.btn-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.btn-player {
+    border-top: 4px solid #0d6efd;
+}
+
+.btn-category .icon-wrapper {
+    margin-bottom: 1rem;
+}
+
+.btn-category .btn-label {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+/* === ESTILOS PARA O DROPDOWN DE BUSCA (CORRIGIDOS E ADICIONADOS) === */
+
 .search-wrapper {
     position: relative; /* Define o ponto de âncora para o container de resultados */
 }
@@ -22,7 +94,7 @@
 }
 
 .search-results a {
-    display: block;
+    display: block; /* ESSENCIAL: Faz cada link ocupar a sua própria linha */
     padding: 0.5rem 1rem;
     color: #dee2e6;
     text-decoration: none;
@@ -37,4 +109,37 @@
 /* Classe utilitária para esconder/mostrar elementos */
 .hidden {
     display: none;
+}
+
+/* =================================== */
+/* === ESTILOS RESPONSIVOS === */
+/* =================================== */
+
+/* Esta regra aplica-se apenas a ecrãs com largura MÁXIMA de 768px (tablets e telemóveis) */
+@media (max-width: 768px) {
+    /* Diminui o tamanho do ícone na página inicial em ecrãs menores */
+    .btn-category .icon-wrapper .fa-3x {
+        font-size: 2.5em; /* Reduz o tamanho do ícone de 3em para 2.5em */
+    }
+
+    /* Diminui o tamanho da fonte do título H1 em ecrãs menores */
+    h1 {
+        font-size: 1.75rem; /* O padrão do Bootstrap é maior */
+    }
+
+    /* Ajusta o padding dos botões de categoria para ocupar menos espaço vertical */
+    .btn-category {
+        padding: 1rem;
+    }
+}
+/* ... (estilos anteriores) ... */
+
+/* === NOVOS ESTILOS PARA A PÁGINA DE CLASSES === */
+.class-table th, .class-table td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.class-table th:nth-child(3), .class-table td:nth-child(3) {
+    text-align: left; /* Alinha a coluna de Características à esquerda */
 }

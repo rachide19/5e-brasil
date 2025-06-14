@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/css/style.css">
 </head>
-<body data-bs-theme="dark"> <!-- Adicionando tema escuro aqui também para consistência -->
+<body data-bs-theme="dark">
     <main class="container-fluid mt-4 px-4">
         <header class="mb-4 border-bottom pb-3">
             <nav aria-label="breadcrumb">
@@ -26,21 +26,29 @@
         </header>
 
         <div class="row">
-            <aside class="col-md-4">
-                <!-- NOVO: Container para a busca e o dropdown de resultados -->
+            <!-- 
+              MUDANÇA AQUI:
+              - col-lg-4: Em ecrãs grandes (lg), ocupa 4 de 12 colunas.
+              - mb-4: Adiciona uma margem inferior para criar espaço quando as colunas se empilharem.
+              - Para ecrãs menores que 'lg', ocupará 12 colunas por defeito, empilhando-se.
+            -->
+            <aside class="col-lg-4 mb-4 mb-lg-0">
                 <div class="search-wrapper mb-3">
                     <input type="search" id="caixa-busca" class="form-control" placeholder="Buscar talentos..." autocomplete="off">
-                    <!-- O dropdown de resultados da busca será inserido aqui -->
                     <div id="search-results-container" class="search-results hidden"></div>
                 </div>
                 
-                <!-- A lista principal da esquerda -->
                 <ul class="list-group" id="lista-talentos">
                     <li class="list-group-item">Carregando...</li>
                 </ul>
             </aside>
 
-            <section class="col-md-8">
+            <!-- 
+              MUDANÇA AQUI:
+              - col-lg-8: Em ecrãs grandes (lg), ocupa as 8 colunas restantes.
+              - Em ecrãs menores, ocupará 12 colunas por defeito, posicionando-se abaixo da primeira.
+            -->
+            <section class="col-lg-8">
                 <div class="content-container" id="conteudo-talento">
                     <div class="card">
                         <div class="card-body">
