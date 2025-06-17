@@ -1,280 +1,135 @@
-/* === Estilos da Página de Talentos (já existentes) === */
+/*
+  =========================================
+  1. DEFINIÇÃO DAS VARIÁVEIS DE TEMA
+  =========================================
+  Aqui definimos as nossas cores como variáveis.
+  O bloco ':root' define os valores padrão (Modo Escuro).
+*/
+:root {
+  --cor-fundo-principal: #282129;
+  --cor-fundo-painel: #2c3034;
+  --cor-borda: #495057;
+  --cor-texto-principal: #dee2e6;
+  --cor-texto-secundario: #adb5bd;
+  --cor-realce-primario: #0d6efd; /* Azul do Bootstrap */
+  --cor-realce-verde: #198754;
+  --cor-realce-roxo: #6f42c1;
+  --cor-fundo-hover: #495057;
+  --cor-texto-hover: #ffffff;
+  --cor-fundo-pergaminho: #fdf1dc;
+  --cor-texto-pergaminho: #1a1a1a;
+  --cor-borda-pergaminho: #822000;
+}
 
+/*
+  Quando o atributo data-bs-theme="light" está no <html>,
+  nós simplesmente redefinimos os valores das mesmas variáveis.
+*/
+html[data-bs-theme='light'] {
+  --cor-fundo-principal: #f8f9fa;
+  --cor-fundo-painel: #ffffff;
+  --cor-borda: #dee2e6;
+  --cor-texto-principal: #212529;
+  --cor-texto-secundario: #6c757d;
+  --cor-fundo-hover: #e9ecef;
+  --cor-texto-hover: #000000;
+}
+
+/*
+  =========================================
+  2. ESTILOS GLOBAIS USANDO AS VARIÁVEIS
+  =========================================
+  Agora, usamos var(--nome-da-variavel) em vez de cores fixas.
+*/
 body {
-    background-color: #f8f9fa;
+    background-color: var(--cor-fundo-principal);
+    color: var(--cor-texto-principal);
 }
 
-/* Força a cor do texto do body para branco no tema escuro para evitar problemas de legibilidade */
-html[data-bs-theme='dark'] body {
-    color: #dee2e6;
-}
-
-.list-container .list-group {
-    max-height: 75vh;
-    overflow-y: auto;
-}
-
-.list-group-item-action:hover {
-    cursor: pointer;
-    background-color: #e9ecef;
-}
-
-/* === Estilos para a Página Inicial === */
-
-html[data-bs-theme='dark'] {
-    background-color: #212529; /* Cor de fundo principal */
-}
-
+/* NAVEGAÇÃO */
 .bg-dark-nav {
-    background-color: #2c3034 !important;
+    background-color: var(--cor-fundo-painel) !important;
 }
 
+.page-header {
+    background-color: var(--cor-fundo-painel);
+    color: var(--cor-texto-principal);
+}
+
+/* PÁGINA INICIAL E BOTÕES */
 .section-title {
-    color: #0d6efd; /* Azul do Bootstrap */
-    font-weight: bold;
-    border-bottom: 2px solid #495057;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1.5rem;
+    color: var(--cor-realce-primario);
+    border-bottom: 2px solid var(--cor-borda);
 }
 
 .btn-category {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 1rem;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease-in-out;
-    background-color: #343a40;
-    border: 1px solid #495057;
-    color: #adb5bd;
-    text-decoration: none;
+    background-color: var(--cor-fundo-painel);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto-secundario);
 }
 
 .btn-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    color: #fff;
+    background-color: var(--cor-fundo-hover);
+    color: var(--cor-texto-hover);
 }
 
-.btn-player {
-    border-top: 4px solid #0d6efd;
-}
+.btn-player { border-top: 4px solid var(--cor-realce-primario); }
+.btn-rule { border-top: 4px solid var(--cor-realce-verde); }
+.btn-dm { border-top: 4px solid var(--cor-realce-roxo); }
 
-.btn-category .icon-wrapper {
-    margin-bottom: 1rem;
-}
-
-.btn-category .btn-label {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: bold;
-}
-
-/* === ESTILOS PARA O DROPDOWN DE BUSCA (CORRIGIDOS E ADICIONADOS) === */
-
-.search-wrapper {
-    position: relative; /* Define o ponto de âncora para o container de resultados */
-}
-
-.search-results {
-    position: absolute; /* Posiciona o container em relação ao .search-wrapper */
-    top: 100%; /* Começa logo abaixo da caixa de busca */
-    left: 0;
-    width: 100%;
-    z-index: 10; /* Garante que o dropdown fique sobre outros conteúdos */
-    
-    background-color: #343a40; /* Cor de fundo escura */
-    border: 1px solid #495057;
-    border-top: none; /* Remove a borda de cima para se conectar à caixa de busca */
-    border-radius: 0 0 0.375rem 0.375rem; /* Bordas arredondadas apenas na parte inferior */
-
-    max-height: 250px; /* Altura máxima antes de a rolagem aparecer */
-    overflow-y: auto;  /* Barra de rolagem vertical */
-}
-
-.search-results a {
-    display: block; /* ESSENCIAL: Faz cada link ocupar a sua própria linha */
-    padding: 0.5rem 1rem;
-    color: #dee2e6;
-    text-decoration: none;
-    transition: background-color 0.15s ease-in-out;
-}
-
-.search-results a:hover {
-    background-color: #495057; /* Cor de fundo ao passar o mouse */
-    color: #fff;
-}
-
-/* Classe utilitária para esconder/mostrar elementos */
-.hidden {
-    display: none;
-}
-
-/* =================================== */
-/* === ESTILOS RESPONSIVOS === */
-/* =================================== */
-
-/* Esta regra aplica-se apenas a ecrãs com largura MÁXIMA de 768px (tablets e telemóveis) */
-@media (max-width: 768px) {
-    /* Diminui o tamanho do ícone na página inicial em ecrãs menores */
-    .btn-category .icon-wrapper .fa-3x {
-        font-size: 2.5em; /* Reduz o tamanho do ícone de 3em para 2.5em */
-    }
-
-    /* Diminui o tamanho da fonte do título H1 em ecrãs menores */
-    h1 {
-        font-size: 1.75rem; /* O padrão do Bootstrap é maior */
-    }
-
-    /* Ajusta o padding dos botões de categoria para ocupar menos espaço vertical */
-    .btn-category {
-        padding: 1rem;
-    }
-}
-/* ... (estilos anteriores) ... */
-
-/* === NOVOS ESTILOS PARA A PÁGINA DE CLASSES === */
-.class-table th, .class-table td {
-    text-align: center;
-    vertical-align: middle;
-}
-
-.class-table th:nth-child(3), .class-table td:nth-child(3) {
-    text-align: left; /* Alinha a coluna de Características à esquerda */
-}
-
-/* ... (estilos anteriores) ... */
-
-/* === ESTILOS ATUALIZADOS PARA A PÁGINA DE CLASSES === */
-.class-table th, .class-table td {
-    text-align: center;
-    vertical-align: middle;
-    white-space: nowrap; /* Impede que o texto quebre para a linha seguinte nas células */
-}
-
-.class-table th:nth-child(3), .class-table td:nth-child(3) {
-    text-align: left; /* Alinha a coluna de Características à esquerda */
-    white-space: normal; /* Permite que o texto das características quebre a linha */
-}
-
-/* Garante que o container da tabela seja rolável em ecrãs pequenos */
-.table-responsive {
-    overflow-x: auto;
-}
-/* ... (estilos anteriores) ... */
-
-/* === NOVOS ESTILOS PARA A PÁGINA DE ESPÉCIES === */
-
+/* PÁGINAS DE CONTEÚDO (TALENTOS, CLASSES, ETC.) */
 .list-panel, .content-panel {
-    background-color: #2c3034;
-    border: 1px solid #495057;
-    border-radius: 0.375rem;
-    height: 85vh; /* Define uma altura relativa à altura do ecrã */
-    overflow-y: auto; /* Adiciona uma barra de rolagem vertical se o conteúdo for maior que a altura */
+    background-color: var(--cor-fundo-painel);
+    border: 1px solid var(--cor-borda);
+    height: 85vh;
+    overflow-y: auto;
 }
 
-/* Estilo para indentar as sub-raças na lista */
-.subrace-item {
-    padding-left: 2rem !important;
+.list-group-item {
+    background-color: transparent;
+    border-color: var(--cor-borda);
+    color: var(--cor-texto-principal);
 }
-/* ... (estilos anteriores) ... */
 
-/* === NOVOS ESTILOS PARA FERRAMENTAS (GERADOR DE STATUS) === */
-.stat-box {
-    border: 2px solid #0d6efd;
-    border-radius: 0.5rem;
-    padding: 1rem 1.5rem;
-    font-size: 2rem;
-    font-weight: bold;
-    margin: 0.5rem;
-    min-width: 80px;
-    text-align: center;
+.list-group-item-action:hover, .list-group-item-action:focus {
+    background-color: var(--cor-fundo-hover);
+    color: var(--cor-texto-hover);
 }
-/* ... (estilos anteriores) ... */
 
-/* === NOVOS ESTILOS PARA BESTIÁRIO E SECÇÕES === */
+.list-group-item.active {
+    background-color: var(--cor-realce-primario);
+    border-color: var(--cor-realce-primario);
+    color: #fff;
+}
+
+.card {
+    background-color: transparent;
+    border: none;
+}
+
+/* BESTIÁRIO - O bloco de estatísticas mantém o seu tema de pergaminho */
 .stat-block {
-    background-color: #fdf1dc; /* Cor de pergaminho */
-    color: #1a1a1a; /* Cor de texto escura para legibilidade */
-    border: 2px solid #822000;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background-color: var(--cor-fundo-pergaminho);
+    color: var(--cor-texto-pergaminho);
+    border: 2px solid var(--cor-borda-pergaminho);
 }
+.stat-block .creature-heading h1, .stat-block .creature-heading, .stat-block h3 { color: var(--cor-borda-pergaminho); }
+.stat-block .red-bar { border-top: 1px solid #4d0e00; border-bottom: 1px solid #4d0e00; background-image: linear-gradient(to right, #631200, #a02102, #631200); }
+.stat-block p { color: var(--cor-texto-pergaminho); }
 
-.stat-block .creature-heading {
-    padding: 0.5rem 1rem;
-    color: #822000;
-}
-
-.stat-block .creature-heading h1 {
-    font-family: 'Libre Baskerville', serif;
-    font-weight: 700;
-    margin: 0;
-    color: #822000;
-}
-
-.stat-block h3 {
-    border-bottom: 1px solid #822000;
-    font-family: 'Libre Baskerville', serif;
-    color: #822000;
-    padding: 0.25rem 1rem;
-    margin-top: 1rem;
-    font-size: 1.5rem;
-}
-
-.stat-block .red-bar {
-    background-image: linear-gradient(to right, #631200, #a02102, #631200);
-    height: 3px;
-    border-top: 1px solid #4d0e00;
-    border-bottom: 1px solid #4d0e00;
-}
-
-.stat-block p {
-    margin-bottom: 0.5rem;
-}
-
-/* Cores das bordas para os novos botões */
-.btn-rule {
-    border-top: 4px solid #198754; /* Verde */
-}
-
-.btn-dm {
-    border-top: 4px solid #6f42c1; /* Roxo */
-}
-/* ... (estilos anteriores) ... */
-
-/* === NOVOS ESTILOS PARA O INTERRUPTOR DE TEMA === */
-
+/* INTERRUPTOR DE TEMA */
 .theme-switcher-container .theme-icon {
     font-size: 1.2rem;
     transition: color 0.3s ease;
+    color: var(--cor-texto-secundario);
 }
-
 .theme-switcher-container .theme-icon.active {
-    color: #f39c12; /* Cor amarela para o ícone ativo */
+    color: #f39c12;
 }
 
-.form-switch .form-check-input {
-    width: 3.5em;
-    height: 1.75em;
-    cursor: pointer;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280,0,0,0.25%29'/%3e%3c/svg%3e");
-    transition: background-position .15s ease-in-out;
-}
-
-.form-switch .form-check-input:focus {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e");
-}
-
-.form-switch .form-check-input:checked {
-    background-position: right center;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e");
-}
-
-/* Garante que o menu principal e a busca tenham espaço em telas maiores */
-@media (min-width: 992px) {
-    #main-navbar .navbar-nav {
-        flex-grow: 1;
-    }
-}
+/* ...outros estilos específicos do interruptor e media queries... */
+.form-switch .form-check-input { width: 3.5em; height: 1.75em; cursor: pointer; transition: background-position .15s ease-in-out; }
+.form-switch .form-check-input:focus { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%2386b7fe'/%3e%3c/svg%3e"); }
+.form-switch .form-check-input:checked { background-position: right center; background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='%23fff'/%3e%3c/svg%3e"); }
+html[data-bs-theme='dark'] .form-switch .form-check-input { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%28255,255,255,0.25%29'/%3e%3c/svg%3e"); }
+html[data-bs-theme='light'] .form-switch .form-check-input { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%280,0,0,0.25%29'/%3e%3c/svg%3e"); }

@@ -1,48 +1,64 @@
-document.addEventListener('DOMContentLoaded', () => {
+(() => {
+    'use strict';
 
-    // Atraso para garantir que o menu foi injetado pelo nav.js
-    setTimeout(() => {
-        const themeToggle = document.getElementById('theme-toggle-switch');
+    const THEME_STORAGE_KEY = 'theme';
+
+    const getStoredTheme = () => localStorage.getItem(THEME_STORAGE_KEY);
+    const setStoredTheme = theme => localStorage.setItem(THEME_STORAGE_KEY, theme);
+
+    const getPreferredTheme = () => {
+        const storedTheme = getStoredTheme();
+        if (storedTheme) {
+            return storedTheme;
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    };
+
+    /**
+     * Aplica o tema ao documento e atualiza o estado visual do seletor.
+     * @param {string} theme - O tema a ser aplicado ('light' ou 'dark').
+     */
+    const applyTheme = (theme) => {
+        document.documentElement.setAttribute('data-bs-theme', theme);
+
+        const themeToggleSwitch = document.getElementById('theme-toggle-switch');
         const sunIcon = document.getElementById('sun-icon');
         const moonIcon = document.getElementById('moon-icon');
-        const htmlElement = document.documentElement;
 
-        if (!themeToggle || !sunIcon || !moonIcon) {
-            console.error('Elementos do interruptor de tema não encontrados!');
-            return;
-        }
-
-        // Função para definir o tema e atualizar o estado visual
-        const setTheme = (theme) => {
-            if (theme === 'light') {
-                htmlElement.setAttribute('data-bs-theme', 'light');
-                themeToggle.checked = false;
+        if (themeToggleSwitch && sunIcon && moonIcon) {
+            themeToggleSwitch.checked = (theme === 'dark');
+            if (theme === 'dark') {
+                moonIcon.classList.add('active');
+                sunIcon.classList.remove('active');
+            } else {
                 sunIcon.classList.add('active');
                 moonIcon.classList.remove('active');
-            } else {
-                htmlElement.setAttribute('data-bs-theme', 'dark');
-                themeToggle.checked = true;
-                sunIcon.classList.remove('active');
-                moonIcon.classList.add('active');
             }
-            // Guarda a escolha do utilizador
-            localStorage.setItem('theme', theme);
-        };
+        }
+    };
 
-        // Função para carregar o tema guardado
-        const loadTheme = () => {
-            const savedTheme = localStorage.getItem('theme') || 'dark'; // Padrão para 'dark'
-            setTheme(savedTheme);
-        };
+    // Aplica o tema imediatamente no carregamento da página para evitar "flash" de conteúdo
+    applyTheme(getPreferredTheme());
 
-        // Adiciona o evento de 'change' ao interruptor
-        themeToggle.addEventListener('change', () => {
-            const newTheme = themeToggle.checked ? 'dark' : 'light';
-            setTheme(newTheme);
-        });
+    /**
+     * Configura os event listeners para o seletor de tema.
+     * Esta função é chamada quando o evento 'nav-ready' é disparado.
+     */
+    const setupThemeToggler = () => {
+        const themeToggleSwitch = document.getElementById('theme-toggle-switch');
+        if (themeToggleSwitch) {
+            // Garante que o estado visual esteja correto assim que o botão for encontrado
+            applyTheme(getPreferredTheme());
 
-        // Carrega o tema assim que a página é aberta
-        loadTheme();
+            themeToggleSwitch.addEventListener('click', () => {
+                const newTheme = themeToggleSwitch.checked ? 'dark' : 'light';
+                setStoredTheme(newTheme);
+                applyTheme(newTheme);
+            });
+        }
+    };
 
-    }, 100); // Um pequeno atraso para garantir que o DOM do nav.js foi carregado
-});
+    // Fica "ouvindo" pelo evento que o nav.js dispara quando o menu está pronto.
+    document.addEventListener('nav-ready', setupThemeToggler);
+
+})();

@@ -6,14 +6,16 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
+    // ALTERADO: As classes "navbar-dark" e "bg-dark-nav" foram removidas da tag <nav>.
+    // Agora, a aparência será controlada pelo seu style.css usando as variáveis de tema.
     const navbarHTML = `
         <header class="page-header">
             <div class="container d-flex flex-wrap align-items-center mb-3">
-                <h1 class="page-title my-0">5e Ferramentas 🇧🇷</h1>
+                <h1 class="page-title my-0">5e tools Brasil 🇧🇷</h1>
                 <p class="page-subtitle my-0 ms-3">Um conjunto de ferramentas para jogadores e Mestres de Dungeons & Dragons 5ª Edição.</p>
             </div>
         </header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark-nav border-bottom border-secondary sticky-top">
+        <nav class="navbar navbar-expand-lg border-bottom sticky-top">
             <div class="container-fluid">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -49,7 +51,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         </li>
                     </ul>
 
-                    <!-- NOVO: Interruptor de Tema -->
                     <div class="theme-switcher-container ms-lg-auto me-lg-3 d-flex align-items-center">
                         <i class="fas fa-sun theme-icon" id="sun-icon"></i>
                         <div class="form-check form-switch mx-2">
@@ -68,4 +69,9 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
 
     navbarPlaceholder.innerHTML = navbarHTML;
+
+    // Dispara um evento personalizado para dizer "O menu está pronto!"
+    // O theme.js vai ouvir esse evento para poder configurar o botão de tema.
+    const navReadyEvent = new Event('nav-ready');
+    document.dispatchEvent(navReadyEvent);
 });

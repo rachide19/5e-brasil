@@ -48,6 +48,40 @@
       { "name": "Força Indomável", "level": 18, "description": "Se o total de um teste de Força seu for menor que o seu valor de Força, pode usar esse valor em vez do total." },
       { "name": "Aumento de Atributo", "level": 19, "description": "Quando atinge este nível, pode aumentar um valor de atributo da sua escolha em 2, ou pode aumentar dois valores de atributo da sua escolha em 1. Como é normal, não pode aumentar um valor de atributo acima de 20 usando esta característica. Em vez disso, pode optar por adquirir um talento." },
       { "name": "Campeão Primitivo", "level": 20, "description": "Os seus valores de Força e Constituição aumentam em 4, e o seu máximo para esses valores torna-se 24." }
+    ],
+    "subclasses": [
+      {
+        "name": "Caminho do Berserker",
+        "source": "PHB",
+        "features": [
+          { "name": "Frenesi", "level": 3, "description": "A partir de quando escolhe este caminho no 3º nível, pode entrar em frenesi quando está em fúria. Se o fizer, durante a sua fúria pode fazer um único ataque com arma corpo a corpo como uma ação bónus em cada um dos seus turnos após este. Quando a sua fúria termina, sofre um nível de exaustão." },
+          { "name": "Fúria Inconsciente", "level": 6, "description": "A partir do 6º nível, não pode ser enfeitiçado ou amedrontado enquanto estiver em fúria. Se estiver enfeitiçado ou amedrontado quando entrar em fúria, o efeito é suspenso pela duração da fúria." },
+          { "name": "Presença Intimidadora", "level": 10, "description": "A partir do 10º nível, pode usar a sua ação para amedrontar alguém com a sua presença ameaçadora. Quando o faz, escolha uma criatura que possa ver a até 9 metros de si. Se a criatura o puder ver ou ouvir, deve ser bem-sucedida num teste de resistência de Sabedoria ou fica amedrontada até ao final do seu próximo turno." },
+          { "name": "Retaliação", "level": 14, "description": "A partir do 14º nível, quando sofre dano de uma criatura que está a até 1,5 metros de si, pode usar a sua reação para fazer um ataque com arma corpo a corpo contra essa criatura." }
+        ]
+      },
+      {
+        "name": "Caminho do Guerreiro Totêmico",
+        "source": "PHB",
+        "features": [
+          { "name": "Buscador Espiritual", "level": 3, "description": "Você ganha a capacidade de lançar as magias sentido animal e falar com animais, mas apenas como rituais." },
+          { "name": "Espírito Totêmico", "level": 3, "description": "No 3º nível, você escolhe um espírito totêmico e ganha a sua característica. Você deve fazer esta escolha novamente nos níveis 6 e 14. Urso: Enquanto em fúria, tem resistência a todos os tipos de dano, exceto psíquico. Águia: Enquanto em fúria e não estiver a usar armadura pesada, outras criaturas têm desvantagem nas jogadas de ataque de oportunidade contra si, e pode usar a ação de Correr como uma ação bónus no seu turno. Lobo: Enquanto em fúria, os seus amigos têm vantagem nas jogadas de ataque corpo a corpo contra qualquer criatura a até 1,5 metros de si que seja hostil a si." },
+          { "name": "Aspecto da Fera", "level": 6, "description": "Você ganha um benefício mágico baseado no totem animal da sua escolha. Urso: A sua capacidade de carga é duplicada e tem vantagem em testes de Força feitos para empurrar, puxar, levantar ou quebrar objetos. Águia: Você pode ver até 1,6 km de distância sem dificuldade e discernir detalhes finos. Luz fraca não impõe desvantagem nos seus testes de Sabedoria (Percepção). Lobo: Pode rastrear outras criaturas enquanto viaja a um ritmo rápido e pode mover-se furtivamente enquanto viaja a um ritmo normal." },
+          { "name": "Andarilho Espiritual", "level": 10, "description": "Você pode lançar a magia comungar com a natureza, mas apenas como um ritual. Quando o faz, uma versão espiritual de um dos seus totens animais aparece para lhe transmitir a informação que procura." },
+          { "name": "Sintonia Totêmica", "level": 14, "description": "Você ganha um benefício mágico baseado num totem animal à sua escolha. Urso: Enquanto em fúria, quaisquer criaturas a até 1,5 metros de si que lhe sejam hostis têm desvantagem nas jogadas de ataque contra alvos que não sejam você. Águia: Enquanto em fúria, ganha uma velocidade de voo igual à sua velocidade de caminhada atual. Lobo: Enquanto em fúria, pode usar uma ação bónus no seu turno para derrubar uma criatura Grande ou menor quando a atinge com um ataque de arma corpo a corpo." }
+        ]
+      },
+      {
+        "name": "Caminho do Zelote",
+        "source": "XGTE",
+        "features": [
+          { "name": "Fúria Divina", "level": 3, "description": "Enquanto estiver em fúria, a primeira criatura que atingir com um ataque de arma no seu turno sofre dano extra igual a 1d6 + metade do seu nível de bárbaro. O tipo de dano é necrótico ou radiante; você escolhe o tipo quando ganha esta característica." },
+          { "name": "Guerreiro dos Deuses", "level": 3, "description": "Se uma magia, como reviver os mortos, tiver o único propósito de o devolver à vida (mas não à morte-viva), o lançador não precisa de fornecer componentes materiais para o fazer." },
+          { "name": "Foco Fanático", "level": 6, "description": "A sua devoção permite-lhe ignorar a dor. Se falhar num teste de resistência enquanto estiver em fúria, pode escolher rolar novamente esse teste de resistência. Se o fizer, deve usar o novo resultado. Só pode usar esta característica uma vez por fúria." },
+          { "name": "Presença Zelosa", "level": 10, "description": "Como uma ação bónus, você liberta um grito de guerra divino. Até 10 outras criaturas à sua escolha a até 18 metros de si que o possam ouvir ganham vantagem nas jogadas de ataque e testes de resistência até ao início do seu próximo turno. Uma vez que use esta característica, não pode usá-la novamente até terminar um descanso longo." },
+          { "name": "Fúria Além da Morte", "level": 14, "description": "Enquanto estiver em fúria, ter 0 pontos de vida não o derruba. Você ainda tem de fazer testes de resistência contra a morte, e sofre as penalidades normais por ter 0 pontos de vida. No entanto, se fosse morrer por sofrer dano, não morre até que a sua fúria termine, e só se ainda tiver 0 pontos de vida." }
+        ]
+      }
     ]
   },
   {

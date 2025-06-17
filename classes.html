@@ -15,20 +15,28 @@
     <main class="container-fluid mt-4 px-4">
         <h1 id="class-name-title" class="mb-4">Classes</h1>
         <div class="row">
+            <!-- ALTERADO: A coluna lateral agora contém os cards de informação -->
             <aside class="col-lg-3 mb-4 mb-lg-0">
+                <!-- Lista de classes continua aqui -->
                 <div class="list-group" id="class-list"></div>
+                
+                <!-- Card de Características Principais movido para a barra lateral -->
+                <div id="core-traits" class="card mt-4"></div>
+                
+                <!-- Card de Multiclasse movido para a barra lateral -->
+                <div id="multiclassing-info" class="card mt-4"></div>
             </aside>
+
+            <!-- ALTERADO: A coluna principal agora está mais simples -->
             <section class="col-lg-9">
+                <!-- Tabela de Progressão da Classe -->
                 <div id="class-table-container" class="table-responsive mb-5"></div>
-                <div class="row">
-                    <div class="col-md-6 mb-4">
-                        <div id="core-traits" class="card h-100"></div>
-                    </div>
-                    <div class="col-md-6 mb-4">
-                        <div id="multiclassing-info" class="card h-100"></div>
-                    </div>
-                </div>
-                <hr class="my-4">
+                
+                <!-- Container dos botões de Subclasse -->
+                <div id="subclass-container" class="mb-5"></div>
+                
+                <!-- A antiga estrutura de colunas foi removida daqui -->
+                <!-- As descrições das habilidades agora ocupam todo o espaço -->
                 <div id="class-features-container"></div>
             </section>
         </div>
@@ -36,6 +44,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
     <script src="/js/nav.js" defer></script>
+    <script src="/js/theme.js" defer></script> 
     <script src="/js/classes.js" defer></script>
 </body>
 </html>
