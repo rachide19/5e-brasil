@@ -1,105 +1,86 @@
-document.addEventListener("DOMContentLoaded", async () => {
-    const listaTalentosEl = document.getElementById('lista-talentos');
-    const conteudoTalentoEl = document.getElementById('conteudo-talento');
-    const caixaBuscaEl = document.getElementById('caixa-busca');
-    // NOVO: Referência para o container de resultados da busca
-    const searchResultsContainer = document.getElementById('search-results-container');
+document.addEventListener('DOMContentLoaded', () => {
+    // CORRIGIDO: Seleciona apenas os IDs que realmente existem no seu feats.html
+    const featsListEl = document.getElementById('feats-list');
+    const featsDetailsEl = document.getElementById('feats-details');
 
-    if (!listaTalentosEl || !conteudoTalentoEl || !caixaBuscaEl || !searchResultsContainer) {
-        console.error("Erro Crítico: Um ou mais elementos do HTML não foram encontrados.");
+    // Validação simplificada. Removida a verificação da caixa de busca.
+    if (!featsListEl || !featsDetailsEl) {
+        console.error("Erro Crítico: O elemento 'feats-list' ou 'feats-details' não foi encontrado no HTML.");
         return;
     }
 
-    let todosOsTalentos = [];
+    let allFeats = []; // Armazena todos os talentos carregados
 
-    async function carregarDados() {
+    /**
+     * Carrega os dados dos talentos a partir do arquivo JSON.
+     */
+    async function loadFeatsData() {
         try {
-            const resposta = await fetch('/data/feats.json');
-            if (!resposta.ok) throw new Error(`Erro de rede: ${resposta.status}`);
-            
-            const dados = await resposta.json();
-            todosOsTalentos = dados;
-            
-            renderizarLista(todosOsTalentos);
-            // NOVO: Popula o nosso novo dropdown de busca
-            popularDropdownDeBusca(todosOsTalentos);
+            const response = await fetch('/data/feats.json');
+            if (!response.ok) {
+                throw new Error(`Erro de rede: ${response.status}`);
+            }
+            allFeats = await response.json();
+            renderFeatsList(allFeats); // Exibe a lista completa
 
-        } catch (erro) {
-            console.error('Falha ao carregar os talentos:', erro);
-            listaTalentosEl.innerHTML = `<li class="list-group-item text-danger">Erro ao carregar talentos.</li>`;
+            // MELHORIA: Exibe o primeiro talento da lista por padrão
+            if (allFeats.length > 0) {
+                renderFeatDetails(allFeats[0]);
+                // Ativa o primeiro item da lista visualmente
+                setTimeout(() => {
+                    const firstItem = document.querySelector('#feats-list .list-group-item');
+                    if(firstItem) firstItem.classList.add('active');
+                }, 0);
+            }
+
+        } catch (error) {
+            console.error('Falha ao carregar os talentos:', error);
+            featsListEl.innerHTML = '<div class="list-group"><div class="list-group-item text-danger">Erro ao carregar talentos.</div></div>';
         }
     }
 
-    // NOVO: Função para preencher o dropdown de resultados da busca
-    function popularDropdownDeBusca(talentos) {
-        searchResultsContainer.innerHTML = ''; // Limpa antes de adicionar
-        talentos.forEach(talento => {
-            const linkEl = document.createElement('a');
-            linkEl.href = '#';
-            linkEl.textContent = talento.name;
-            
-            // Adiciona um evento de clique a cada item do dropdown
-            linkEl.addEventListener('click', (e) => {
-                e.preventDefault(); // Previne o link de recarregar a página
-                caixaBuscaEl.value = talento.name; // Preenche a caixa de busca
-                renderizarDetalhes(talento); // Mostra os detalhes
-                renderizarLista([talento]); // Filtra a lista principal para mostrar apenas o selecionado
-                searchResultsContainer.classList.add('hidden'); // Esconde o dropdown
-            });
-            searchResultsContainer.appendChild(linkEl);
-        });
-    }
-
-    // --- LÓGICA DE EVENTOS (MOSTRAR/ESCONDER DROPDOWN) ---
-
-    // NOVO: Mostra o dropdown quando a caixa de busca é focada (clicada)
-    caixaBuscaEl.addEventListener('focus', () => {
-        searchResultsContainer.classList.remove('hidden');
-    });
-
-    // NOVO: Esconde o dropdown se o usuário clicar em qualquer lugar fora da área de busca
-    document.addEventListener('click', (e) => {
-        // Verifica se o clique foi fora do .search-wrapper
-        if (!e.target.closest('.search-wrapper')) {
-            searchResultsContainer.classList.add('hidden');
-        }
-    });
-
-    // --- LÓGICA DE FILTRAGEM (JÁ EXISTENTE, MAS AINDA IMPORTANTE) ---
-    
-    caixaBuscaEl.addEventListener('input', () => {
-        const termoBusca = caixaBuscaEl.value.toLowerCase();
-        const talentosFiltrados = todosOsTalentos.filter(t => t.name.toLowerCase().includes(termoBusca));
-        
-        // Filtra tanto a lista principal da esquerda quanto o dropdown de busca
-        renderizarLista(talentosFiltrados);
-        popularDropdownDeBusca(talentosFiltrados);
-    });
-
-    // --- FUNÇÕES DE RENDERIZAÇÃO (SEM GRANDES MUDANÇAS) ---
-
-    function renderizarLista(lista) {
-        listaTalentosEl.innerHTML = '';
-        if (lista.length === 0) {
-            listaTalentosEl.innerHTML = `<li class="list-group-item">Nenhum talento encontrado.</li>`;
+    /**
+     * Renderiza a lista de talentos no painel lateral.
+     * @param {Array} feats - A lista de talentos a ser exibida.
+     */
+    function renderFeatsList(feats) {
+        featsListEl.innerHTML = ''; // Limpa a mensagem "Carregando..."
+        if (feats.length === 0) {
+            featsListEl.innerHTML = '<div class="list-group"><div class="list-group-item">Nenhum talento encontrado.</div></div>';
             return;
         }
-        lista.forEach(talento => {
+
+        const listGroup = document.createElement('div');
+        listGroup.className = 'list-group';
+
+        feats.forEach(feat => {
             const itemEl = document.createElement('a');
             itemEl.className = 'list-group-item list-group-item-action';
-            itemEl.textContent = talento.name;
-            itemEl.href = '#';
+            itemEl.textContent = feat.name;
+            itemEl.href = '#'; // Usado para comportamento de link
             itemEl.addEventListener('click', (e) => {
                 e.preventDefault();
-                renderizarDetalhes(talento);
+                renderFeatDetails(feat);
+                
+                // Adiciona a classe 'active' ao item clicado
+                document.querySelectorAll('#feats-list .list-group-item').forEach(btn => btn.classList.remove('active'));
+                itemEl.classList.add('active');
             });
-            listaTalentosEl.appendChild(itemEl);
+            listGroup.appendChild(itemEl);
         });
+        featsListEl.appendChild(listGroup);
     }
 
-    function renderizarDetalhes(talento) {
-        // ... (código para renderizar detalhes permanece o mesmo)
-        const descricoesHtml = talento.entries.map(entry => {
+    /**
+     * Renderiza os detalhes de um talento específico no painel de conteúdo.
+     * @param {object} feat - O objeto do talento a ser exibido.
+     */
+    function renderFeatDetails(feat) {
+        const prerequisites = feat.prerequisite 
+            ? `<p class="card-text"><strong>Pré-requisito:</strong> ${feat.prerequisite}</p>` 
+            : ''; // Não mostra nada se não houver pré-requisito
+
+        const descriptionsHtml = feat.entries.map(entry => {
             if (typeof entry === 'string') {
                 return `<p>${entry}</p>`;
             } else if (entry.type === 'list') {
@@ -108,19 +89,16 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
             return '';
         }).join('');
-        conteudoTalentoEl.innerHTML = `
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">${talento.name}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">Fonte: ${talento.source}</h6>
-                    <p class="card-text"><strong>Pré-requisito:</strong> ${talento.prerequisite}</p>
-                    <hr>
-                    ${descricoesHtml}
-                </div>
+
+        featsDetailsEl.innerHTML = `
+            <div class="p-4">
+                <h3>${feat.name}</h3>
+                <h6 class="card-subtitle mb-2 text-muted">Fonte: ${feat.source}</h6>
+                ${prerequisites}
+                <hr>
+                ${descriptionsHtml}
             </div>
         `;
     }
-
-    // Ponto de partida
-    carregarDados();
+    loadFeatsData();
 });

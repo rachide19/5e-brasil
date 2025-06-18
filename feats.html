@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" data-bs-theme="dark">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,11 +16,17 @@
         <h1 class="mb-4">Talentos</h1>
         <div class="row">
             <aside class="col-md-4">
+                <!-- Caixa de busca adicionada -->
+                <div class="mb-3">
+                    <input type="search" id="caixa-busca-talentos" class="form-control" placeholder="Buscar talento...">
+                </div>
+                <!-- ID "feats-list" é mantido -->
                 <div class="list-panel" id="feats-list">
                     <div class="p-3 text-center">Carregando talentos...</div>
                 </div>
             </aside>
             <section class="col-md-8">
+                 <!-- ID "feats-details" é mantido -->
                 <div class="content-panel" id="feats-details">
                     <div class="p-5 text-center">
                         <h2>Selecione um talento da lista</h2>
@@ -32,9 +38,9 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
-    <script src="/js/search.js" defer></script>
     <script src="/js/nav.js" defer></script>
     <script src="/js/theme.js" defer></script>
+    <!-- O search.js não é necessário nesta página específica -->
     <script src="/js/feats.js" defer></script>
 </body>
 </html>
