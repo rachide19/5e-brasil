@@ -1,5 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
-
+document.addEventListener("DOMContentLoaded", async () => {
     const listaTalentosEl = document.getElementById('lista-talentos');
     const conteudoTalentoEl = document.getElementById('conteudo-talento');
     const caixaBuscaEl = document.getElementById('caixa-busca');

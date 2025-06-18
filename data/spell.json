@@ -1,5 +1,16 @@
 [
   {
+    "name": "Fireball",
+    "level": 3,
+    "school": "Evocation",
+    "casting_time": "1 ação",
+    "range": "45 metros",
+    "components": ["V", "S", "M (uma pequena bola de guano de morcego e enxofre)"],
+    "duration": "Instantânea",
+    "description": "Um raio de luz amarela brilhante sai da sua mão e explode num ponto à sua escolha dentro do alcance, numa esfera de fogo com 6 metros de raio. Cada criatura nessa área deve fazer um teste de resistência de Destreza. Um alvo sofre 8d6 de dano de fogo se falhar no teste, ou metade do dano se for bem-sucedido.",
+    "classes": ["Feiticeiro", "Mago"]
+  },
+  {
     "name": "Mage Armor",
     "level": 1,
     "school": "Abjuration",
@@ -11,14 +22,11 @@
     "classes": ["Feiticeiro", "Mago"]
   },
   {
-    "name": "Fireball",
-    "level": 3,
-    "school": "Evocation",
-    "casting_time": "1 ação",
-    "range": "45 metros",
-    "components": ["V", "S", "M (uma pequena bola de guano de morcego e enxofre)"],
-    "duration": "Instantânea",
-    "description": "Um raio de luz amarela brilhante sai da sua mão e explode num ponto à sua escolha dentro do alcance, numa esfera de fogo com 6 metros de raio. Cada criatura nessa área deve fazer um teste de resistência de Destreza. Um alvo sofre 8d6 de dano de fogo se falhar no teste, ou metade do dano se for bem-sucedido.",
-    "classes": ["Feiticeiro", "Mago"]
+    "name": "Mísseis Mágicos",
+    "source": "PHB",
+    "entries": [
+      "Você cria três dardos brilhantes de força mágica...",
+      "Cada dardo acerta automaticamente uma criatura à sua escolha que você possa ver dentro do alcance..."
+    ]
   }
 ]

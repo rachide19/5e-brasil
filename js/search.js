@@ -1,52 +1,77 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const formBusca = document.getElementById('form-busca');
-    const inputBusca = document.getElementById('input-busca');
-    // ATUALIZADO: Agora o nosso alvo é o container com a barra de rolagem
-    const dropdownContainer = document.getElementById('dropdown-talentos-container');
+// Este objeto gerencia toda a lógica de busca do site.
+const SiteSearch = {
+    searchIndex: [],
+    isInitialized: false,
 
-    function inicializarBusca() {
-        if (formBusca) {
-            formBusca.addEventListener('submit', (evento) => {
-                evento.preventDefault();
-                const termo = inputBusca.value.trim().toLowerCase();
-                if (!termo) return;
-                
-                if (termo === 'talentos' || termo === 'talento' || termo === 'feat' || termo === 'feats') {
-                    window.location.href = '/feats.html';
-                } else {
-                    alert(`Busca por "${termo}" não encontrou resultados.`);
-                }
-            });
-        }
-    }
+    normalize: function(text) {
+        if (!text) return "";
+        return text.toString().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    },
 
-    async function carregarTalentosDropdown() {
-        if (!dropdownContainer) return;
+    initialize: async function() {
+        if (this.isInitialized) return;
+
+        const dataSources = [
+            { type: 'Antecedente', url: '/data/backgrounds.json', page: '/backgrounds.html' },
+            { type: 'Monstro', url: '/data/bestiary.json', page: '/bestiary.html' },
+            { type: 'Classe', url: '/data/classes.json', page: '/classes.html' },
+            { type: 'Espécie', url: '/data/species.json', page: '/species.html' },
+            { type: 'Item', url: '/data/items.json', page: '/items.html' },
+            { type: 'Magia', url: '/data/spells.json', page: '/spells.html' },
+            { type: 'Opções & Características', url: '/data/options.json', page: '/options.html' },
+            { type: 'Talento', url: '/data/feats.json', page: '/feats.html' },            
+        ];
 
         try {
-            const resposta = await fetch('/data/feats.json');
-            if (!resposta.ok) throw new Error('Falha ao buscar talentos');
-            
-            const talentos = await resposta.json();
+            const allPromises = dataSources.map(source =>
+                fetch(source.url)
+                    .then(response => {
+                        if (!response.ok) throw new Error(`Falha ao carregar ${source.url}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        data.forEach(item => {
+                            this.searchIndex.push({
+                                name: item.name,
+                                normalizedName: this.normalize(item.name),
+                                type: source.type,
+                                url: `${source.page}#${this.normalize(item.name).replace(/\s+/g, '-')}`
+                            });
 
-            // Limpa o conteúdo inicial ("Carregando...")
-            dropdownContainer.innerHTML = '';
+                            if (item.subclasses) {
+                                item.subclasses.forEach(sub => {
+                                    this.searchIndex.push({
+                                        name: `${sub.name} (${item.name})`,
+                                        normalizedName: this.normalize(sub.name),
+                                        type: 'Subclasse',
+                                        url: `${source.page}#${this.normalize(item.name).replace(/\s+/g, '-')}`
+                                    });
+                                });
+                            }
+                        });
+                    }).catch(error => console.error(`Erro processando ${source.url}:`, error))
+            );
 
-            // Para cada talento, cria um link e o adiciona diretamente ao container
-            talentos.forEach(talento => {
-                const a = document.createElement('a');
-                a.className = 'dropdown-item';
-                a.href = `/feats.html#${encodeURIComponent(talento.name)}`;
-                a.textContent = talento.name;
-                dropdownContainer.appendChild(a);
-            });
+            await Promise.all(allPromises);
+            this.isInitialized = true;
+            document.dispatchEvent(new Event('search-ready'));
 
-        } catch (erro) {
-            console.error("Erro ao carregar talentos no dropdown:", erro);
-            dropdownContainer.innerHTML = '<span class="dropdown-item-text text-danger">Erro ao carregar</span>';
+        } catch (error) {
+            console.error("Erro ao inicializar índice de busca:", error);
         }
-    }
+    },
 
-    inicializarBusca();
-    carregarTalentosDropdown();
+    // 🔧 AQUI ESTÁ A FUNÇÃO FALTANDO
+    search: function(query) {
+        const normalizedQuery = this.normalize(query);
+        return this.searchIndex.filter(entry =>
+            entry.normalizedName.includes(normalizedQuery)
+        );
+    }
+};
+
+
+// Inicia o processo de carregamento dos dados assim que o DOM estiver pronto.
+document.addEventListener('DOMContentLoaded', () => {
+    SiteSearch.initialize();
 });
