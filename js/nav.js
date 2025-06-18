@@ -81,32 +81,20 @@ document.addEventListener('DOMContentLoaded', function() {
                         </li>
 
                          <li class="nav-item dropdown">
-
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Mestre</a>
-
                             <ul class="dropdown-menu">
-
                                 <li><a class="dropdown-item" href="/bestiary.html">Bestiário</a></li>
-
                             </ul>
-
                         </li>
 
                         <li class="nav-item dropdown">
-
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Utilitários</a>
-
                             <ul class="dropdown-menu">
-
-                                <li><a class="dropdown-item" href="/bestiary.html">Política de Privacidade</a></li>
-
+                                <li><a class="dropdown-item" href="/homebrew.html">Central de Homebrew</a></li>
                             </ul>
-
                         </li>
 
                     </ul>
-
-
 
                     <div class="theme-switcher-container ms-lg-auto me-lg-3 d-flex align-items-center">
 
@@ -121,8 +109,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <i class="fas fa-moon theme-icon" id="moon-icon"></i>
 
                     </div>
-
-
 
                     <!-- FORMULÁRIO DE BUSCA -->
 

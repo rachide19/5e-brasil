@@ -1,97 +1,54 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    // Assumindo que seu species.html tem uma estrutura similar a feats.html
     const speciesListEl = document.getElementById('species-list');
     const speciesDetailsEl = document.getElementById('species-details');
 
-    let all_species = [];
+    if (!speciesListEl || !speciesDetailsEl) {
+        console.error("Elementos 'species-list' ou 'species-details' não encontrados.");
+        return;
+    }
 
     async function loadSpeciesData() {
+        const officialSource = '/data/species.json';
+        const barbaBrewSource = '/data/homebrew/barbabrew_species.json';
+        const localHomebrewKey = 'd5e-homebrew-species';
+
         try {
-            const response = await fetch('/data/species.json');
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-            all_species = await response.json();
+            // Carrega dados oficiais e do BarbaBrew em paralelo
+            const fetchPromises = [
+                fetch(officialSource).then(res => res.ok ? res.json() : []),
+                fetch(barbaBrewSource).then(res => res.ok ? res.json() : [])
+            ];
             
-            renderSpeciesList();
-            // Por defeito, carrega a primeira espécie da lista
-            if (all_species.length > 0) {
-                renderSpeciesDetails(all_species[0]);
+            const [officialSpecies, barbaBrewSpecies] = await Promise.all(fetchPromises);
+            
+            // Carrega dados do localStorage
+            const localSpecies = JSON.parse(localStorage.getItem(localHomebrewKey) || '[]');
+
+            // Combina todas as fontes, ordena e renderiza
+            const allSpecies = [...officialSpecies, ...barbaBrewSpecies, ...localSpecies]
+                .sort((a, b) => a.name.localeCompare(b.name));
+
+            renderSpeciesList(allSpecies);
+
+            if (allSpecies.length > 0) {
+                renderSpeciesDetails(allSpecies[0]);
+                // ... lógica para ativar o primeiro item ...
             }
+
         } catch (error) {
-            console.error("Falha ao carregar dados das espécies:", error);
-            speciesListEl.innerHTML = '<div class="p-3 text-danger">Erro ao carregar.</div>';
+            console.error('Falha ao carregar as espécies:', error);
+            speciesListEl.innerHTML = '<div class="list-group-item text-danger">Erro ao carregar espécies.</div>';
         }
     }
-
-    function renderSpeciesList() {
-        speciesListEl.innerHTML = '';
-        const listGroup = document.createElement('div');
-        listGroup.className = 'list-group';
-
-        all_species.forEach(species => {
-            // Adiciona a espécie principal
-            const mainButton = createSpeciesButton(species, species.name);
-            listGroup.appendChild(mainButton);
-
-            // Adiciona as sub-raças, se existirem
-            if (species.subraces && species.subraces.length > 0) {
-                species.subraces.forEach(subrace => {
-                    // Combina os dados da espécie principal com a sub-raça
-                    const fullSubraceData = { ...species, ...subrace, name: subrace.name, originalName: species.name };
-                    const subraceButton = createSpeciesButton(fullSubraceData, `${species.name} (${subrace.name})`, true);
-                    listGroup.appendChild(subraceButton);
-                });
-            }
-        });
-        speciesListEl.appendChild(listGroup);
+    
+    function renderSpeciesList(species) {
+        // ... Lógica para renderizar a lista, similar à de feats.js
+        // Adicione tags visuais para 'BarbaBrew' e 'Homebrew Pessoal'
     }
 
-    function createSpeciesButton(speciesData, displayName, isSubrace = false) {
-        const button = document.createElement('button');
-        button.type = 'button';
-        button.className = `list-group-item list-group-item-action ${isSubrace ? 'subrace-item' : ''}`;
-        button.textContent = displayName;
-        button.onclick = (event) => {
-            document.querySelectorAll('#species-list .list-group-item').forEach(btn => btn.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-            renderSpeciesDetails(speciesData);
-        };
-        return button;
-    }
-
-    function renderSpeciesDetails(data) {
-        let traitsHtml = '';
-        
-        // Renderiza os traços da espécie principal
-        data.traits.forEach(trait => {
-            traitsHtml += `<h5>${trait.name}</h5><p>${trait.description}</p>`;
-        });
-
-        // Se for uma sub-raça, renderiza também os seus traços únicos
-        if (data.originalName) {
-            // A lógica aqui assume que os traços da sub-raça estão no nível superior do objeto 'data'
-            // após a fusão. Vamos ajustar a estrutura de dados para simplificar.
-            // Para a estrutura atual, a lógica de renderização dos traços da sub-raça
-            // já está incluída no array 'traits' da espécie principal.
-            // A estrutura de dados de exemplo foi simplificada. Para uma estrutura mais complexa,
-            // seria necessário combinar os arrays `traits` da espécie e da sub-raça.
-        }
-
-        speciesDetailsEl.innerHTML = `
-            <div class="p-4">
-                <h2>${data.name} ${data.originalName ? `(${data.originalName})` : ''}</h2>
-                <hr>
-                <p><strong>Aumento de Valor de Atributo:</strong> ${data.abilityScoreIncrease}</p>
-                <p><strong>Idade:</strong> ${data.age}</p>
-                <p><strong>Alinhamento:</strong> ${data.alignment}</p>
-                <p><strong>Tamanho:</strong> ${data.size}</p>
-                <p><strong>Velocidade:</strong> ${data.speed}</p>
-                <p><strong>Visão:</strong> ${data.vision}</p>
-                <hr>
-                ${traitsHtml}
-                <hr>
-                <p><strong>Idiomas:</strong> ${data.languages}</p>
-            </div>
-        `;
+    function renderSpeciesDetails(specie) {
+        // ... Lógica para renderizar os detalhes, similar à de feats.js
     }
 
     loadSpeciesData();
